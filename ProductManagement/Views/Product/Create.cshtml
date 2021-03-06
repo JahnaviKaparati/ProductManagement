@@ -1,0 +1,39 @@
+﻿@model DomainModels.Product
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        New Product
+    </div>
+    <div class="panel-body">
+        <form method="post" asp-controller="Product" asp-action="Create">
+            <div class="form-group">
+                <label for="Image">Image</label>
+                <input type="file" class="form-control-file" name="Image" id="txtPropImage"/>
+            </div>
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input type="text" class="form-control" placeholder="name" id="txtProdName" />
+            </div>
+            <div class="form-group">
+                <label for="Code">Code</label>
+                <input type="text" class="form-control" placeholder="name" id="txtProdCode" />
+            </div>
+            <div class="form-group">
+                <label for="Description">Desc</label>
+                <input type="text" class="form-control" placeholder="name" id="txtProdName" />
+            </div>
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input type="text" class="form-control" placeholder="name" id="txtProdName" />
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer">
+        <button type="button" id="btnAdd" class="btn btn-success">Save</button>
+        <button type="button" id="btnCancel" class="btn btn-default">Cancel</button>
+    </div>
+</div>
+
+

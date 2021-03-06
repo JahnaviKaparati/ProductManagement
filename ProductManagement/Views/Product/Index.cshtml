@@ -1,0 +1,287 @@
+﻿@model IEnumerable<DomainModels.Product>
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Index</h1>
+<button type="button" id="btnAllProducts" class="btn btn-default">All Products</button>
+<table class="table product">
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Product Code</th>
+        <th>Available</th>
+        <th>Price</th>
+        <th>Rating</th>
+    </tr>
+</table>
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="viewProdModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Product Details</h4>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <tr>
+                        <td>Name</td>
+                        <td><span id="prodNameSpan"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Product Code</td>
+                        <td><span id="prodCodeSpan"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td><span id="prodDesSpan"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Available</td>
+                        <td><span id="prodAvailSpan"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td><span id="prodPriceSpan"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Rating</td>
+                        <td><span id="prodRatingSpan"></span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Add New Prod -->
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        New Department
+    </div>
+    <div class="panel-body">
+        <form>
+            <div class="form-group">
+                <label for="DeptName">Department Name</label>
+                <input type="text" class="form-control" placeholder="Dept names" id="txtDeptName" />
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer">
+        <button type="button" id="btnAdd" class="btn btn-success">Save</button>
+        <button type="button" id="btnCancel" class="btn btn-default">Cancel</button>
+    </div>
+</div>
+
+<!--Edit Dept Name-->
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Update Department
+    </div>
+    <div class="panel-body">
+        <form>
+            <div class="form-group">
+                <label for="DeptName">Department Id</label>
+                <input type="text" class="form-control" placeholder="Dept Id" id="edittxtDeptId" disabled="disabled" />
+            </div>
+            <div class="form-group">
+                <label for="DeptName">Department Name</label>
+                <input type="text" class="form-control" placeholder="Dept names" id="edittxtDeptName" />
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer">
+        <button type="button" id="btnEdit" class="btn btn-success">Save</button>
+        <button type="button" id="btnCancel" class="btn btn-default">Cancel</button>
+    </div>
+</div>
+
+<!--Delete Model-->
+<div class="modal fade" id="deleteDeptModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Delete Department</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Are you sure, you want to delete the department</h3>
+                <table>
+                    <tr>
+                        <td>DeptId</td>
+                        <td><span id="dDeptIdSpan"></span></td>
+                    </tr>
+                    <tr>
+                        <td>DeptName</td>
+                        <td><span id="dDeptNameSpan"></span></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btnModelDelete">Delete</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*@Scripts.Render("~/bundles/jquery")*@
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $('#btnAllProducts').click(() => {
+        $.ajax({
+            type: 'GET',
+            url: '/api/products',
+            success: (response) => {
+                for (var i = 0; i < response.length; i++) {
+                    var prod = response[i]
+                    var str = `<tr>
+                               <td> ${i + 1} </td>
+                                <td> ${prod.Image} </td>
+<td> ${prod.Name} </td>
+<td> ${prod.Code} </td>
+<td> ${prod.Available} </td>
+<td> ${prod.Price} </td>
+<td> ${prod.Rating} </td>
+                                 
+                                   </tr>`
+                    $('.product').append(str);
+                }
+            },
+            error: (err) => {
+                alert(err)
+                console.log(`Error occured:${err}`)
+            }
+        })
+    })
+
+    //Get dept to be deleted in the delete model window
+    var deptIdToDelete
+    var currentRowToDelete
+    $(document).on('click', '.deleteDeptBtn', (event) => {
+        var did = $(event.target).attr('data-deptId')
+        $.ajax({
+            type: 'GET',
+            url: '/api/departments?id=' + did,
+            success: (response) => {
+                $('#dDeptIdSpan').html(response.DeptId)
+                $('#dDeptNameSpan').html(response.DeptName)
+                deptIdToDelete = response.DeptId
+            },
+            error: (err) => {
+                alert(err)
+                console.log(`Error occured:${err.statusCode}`)
+            }
+        })
+    })
+    $(document).on('click', '.viewDeptBtn', (event) => {
+
+        var did = $(event.target).attr('data-deptId')
+        $.ajax({
+            type: 'GET',
+            url: '/api/departments?id=' + did,
+            success: (response) => {
+                $('#deptIdSpan').html(response.DeptId)
+                $('#deptNameSpan').html(response.DeptName)
+            },
+            error: (err) => {
+                alert(err)
+                console.log(`Error occured:${err}`)
+            }
+        })
+    })
+    //get data in update form when user clickes on edit button
+    var currentRow
+
+    $(document).on('click', '.editDeptBtn', (event) => {
+
+        var did = $(event.target).attr('data-deptId')
+        currentRow = $(event.target).parent().parent()
+        $.ajax({
+            type: 'GET',
+            url: '/api/departments?id=' + did,
+            success: (response) => {
+                $('#edittxtDeptId').val(response.DeptId);
+                $('#edittxtDeptName').val(response.DeptName)
+            },
+            error: (err) => {
+                alert(err)
+                console.log(`Error occured:${err}`)
+            }
+        })
+    })
+
+    $('#btnAdd').click(() => {
+        var deptName = $('#txtDeptName').val()
+        $.ajax({
+            url: '/api/departments',
+            type: 'POST',
+            data: {
+                'deptname': deptName
+                //OR
+                //deptName
+            },
+            success: (response) => {
+                var deptCount = $('#deptsTable tr').length - 1
+                var str = `<tr>
+                    <td>$Tot Depts:${deptCount}</td>
+                     <td> ${deptName} </td>
+                     <td><button type="button" class="btn btn-info viewDeptBtn"
+                        data-toggle="modal"
+                      data-target="#viewDeptModel">Details</button></td>
+                      </tr>`
+                $('#deptsTable').append(str)
+            },
+            error: (err) => {
+                alert(err.statusCode)
+            }
+
+        })
+    })
+
+    $('#btnEdit').click(() => {
+        var deptId = $('#edittxtDeptId').val()
+        var deptName = $('#edittxtDeptName').val()
+        $.ajax({
+            url: '/api/departments/' + deptId,
+            type: 'PUT',
+            data: {
+                'deptId': deptId,
+                'deptName': deptName
+            },
+            success: (response) => {
+                currentRow.find('td:eq(0)'.html(deptId))
+                currentRow.find('td:eq(1)'.html(deptName))
+            },
+            error: (err) => {
+                alert(err.statusCode)
+            }
+
+        })
+    })
+
+    $('#btnModelDelete').click(() => {
+        $.ajax({
+            type: 'DELETE',
+            url: '/api/Departments?id=' + deptIdToDelete,
+            success: (response) => {
+                //currentRowToDelete.remove('td:eq(0)'.html(deptId))
+                //currentRowToDelete.remove('td:eq(1)'.html(deptName))
+                currentRowToDelete.remove()
+            },
+            error: (err) => {
+                alert(err.statusCode)
+            }
+        })
+    })
+
+</script>
+
+
+

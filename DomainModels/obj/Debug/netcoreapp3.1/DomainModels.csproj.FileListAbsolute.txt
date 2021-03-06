@@ -1,0 +1,9 @@
+F:\DotNetBatchJan2021\WebApps\ProductManagement\DomainModels\bin\Debug\netcoreapp3.1\DomainModels.deps.json
+F:\DotNetBatchJan2021\WebApps\ProductManagement\DomainModels\bin\Debug\netcoreapp3.1\DomainModels.dll
+F:\DotNetBatchJan2021\WebApps\ProductManagement\DomainModels\bin\Debug\netcoreapp3.1\DomainModels.pdb
+F:\DotNetBatchJan2021\WebApps\ProductManagement\DomainModels\obj\Debug\netcoreapp3.1\DomainModels.csprojAssemblyReference.cache
+F:\DotNetBatchJan2021\WebApps\ProductManagement\DomainModels\obj\Debug\netcoreapp3.1\DomainModels.AssemblyInfoInputs.cache
+F:\DotNetBatchJan2021\WebApps\ProductManagement\DomainModels\obj\Debug\netcoreapp3.1\DomainModels.AssemblyInfo.cs
+F:\DotNetBatchJan2021\WebApps\ProductManagement\DomainModels\obj\Debug\netcoreapp3.1\DomainModels.csproj.CoreCompileInputs.cache
+F:\DotNetBatchJan2021\WebApps\ProductManagement\DomainModels\obj\Debug\netcoreapp3.1\DomainModels.dll
+F:\DotNetBatchJan2021\WebApps\ProductManagement\DomainModels\obj\Debug\netcoreapp3.1\DomainModels.pdb
