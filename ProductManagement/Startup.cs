@@ -2,6 +2,7 @@ using DataLayer;
 using DataLayer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -63,6 +64,7 @@ namespace ProductManagement
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
@@ -70,6 +72,9 @@ namespace ProductManagement
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+            });
+            app.Run(async (ProdDbContext)=>
+            { await ProdDbContext.Response.WriteAsync("Could not found");
             });
         }
     }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "hXSIPCZYgBfpYymHfB3ASCDJPYGvgtg4+9C1SUrVKXZdJtfeMXYY1VV9BCQMVbqQiwFwrjYfFDFSsQXTmAF09g==",
+  "dgSpecHash": "MzR8KrykmeS7ks5VqYkXAtz7qgdvdTl2CSELBPaee2YAWJpN2NxSEdJW5XYg2uCIpkJXS9NGu5/s7XXyuy/NRw==",
   "success": true,
   "projectFilePath": "F:\\DotNetBatchJan2021\\WebApps\\ProductManagement\\ProductManagement\\ProductManagement.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,8 @@
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.12\\microsoft.aspnetcore.cryptography.keyderivation.3.1.12.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\3.1.11\\microsoft.aspnetcore.diagnostics.entityframeworkcore.3.1.11.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\3.1.12\\microsoft.aspnetcore.identity.entityframeworkcore.3.1.12.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\3.1.12\\microsoft.aspnetcore.identity.ui.3.1.12.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
