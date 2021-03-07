@@ -25,12 +25,16 @@
       "ProductManagement/1.0.0": {
         "dependencies": {
           "DataLayer": "1.0.0",
+          "FontAwesome": "4.7.0",
+          "Microsoft.AspNetCore.Authentication.Google": "3.1.12",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "3.1.11",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.12",
           "Microsoft.AspNetCore.Identity.UI": "3.1.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.12",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.12",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.5",
+          "Microsoft.jQuery.Unobtrusive.Validation": "3.2.12",
+          "Twitter.Bootstrap": "3.0.1.1",
           "jQuery": "3.5.1",
           "jQuery.Validation": "1.19.3",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
@@ -304,10 +308,27 @@
           "ProductManagement.dll": {}
         }
       },
+      "bootstrap/3.0.1": {
+        "dependencies": {
+          "jQuery": "3.5.1"
+        }
+      },
+      "FontAwesome/4.7.0": {},
       "jQuery/3.5.1": {},
       "jQuery.Validation/1.19.3": {
         "dependencies": {
           "jQuery": "3.5.1"
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.Google/3.1.12": {
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "assemblyVersion": "3.1.12.0",
+            "fileVersion": "3.100.1221.7012"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Google.dll": {}
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal/3.1.12": {
@@ -1115,6 +1136,12 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {}
+        }
+      },
+      "Microsoft.jQuery.Unobtrusive.Validation/3.2.12": {
+        "dependencies": {
+          "jQuery": "3.5.1",
+          "jQuery.Validation": "1.19.3"
         }
       },
       "Microsoft.NETCore.Platforms/2.1.2": {},
@@ -2353,6 +2380,11 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XmlDocument": "4.3.0"
+        }
+      },
+      "Twitter.Bootstrap/3.0.1.1": {
+        "dependencies": {
+          "bootstrap": "3.0.1"
         }
       },
       "DataLayer/1.0.0": {
@@ -3967,6 +3999,20 @@
       "serviceable": false,
       "sha512": ""
     },
+    "bootstrap/3.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rwpiPJiWRbGRypo/NnyqzwS9hWLMLujLU1vM2OfeuZJ2yNGb86RzmQKEcWbewWu+eJkcYatCqpn/U5zNgotVHQ==",
+      "path": "bootstrap/3.0.1",
+      "hashPath": "bootstrap.3.0.1.nupkg.sha512"
+    },
+    "FontAwesome/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-n4H/brfszElyoZ4kmGh8E75uqvLzLvFr3h2PFVdPH1LwUmWIpeqdaW2pcC4oZAhg7sESyObh0IZpAI8COCNeUg==",
+      "path": "fontawesome/4.7.0",
+      "hashPath": "fontawesome.4.7.0.nupkg.sha512"
+    },
     "jQuery/3.5.1": {
       "type": "package",
       "serviceable": true,
@@ -3980,6 +4026,13 @@
       "sha512": "sha512-Y9oA2cqUyuJYd+egyp/2VwsUT4mH1X31R7i74VTm1i/7XhnSK0iAWsPvQBXxXz6BhOnEDhAQ0u12Aj830/e1YA==",
       "path": "jquery.validation/1.19.3",
       "hashPath": "jquery.validation.1.19.3.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.Google/3.1.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4VSvW3AbtascudMcVhIyLPnlWSsSJlifZKYAx3evOVM0aNSTCIXqASFei7YcR2PUORopB+uhuIbv5Qr/6aQmEA==",
+      "path": "microsoft.aspnetcore.authentication.google/3.1.12",
+      "hashPath": "microsoft.aspnetcore.authentication.google.3.1.12.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/3.1.12": {
       "type": "package",
@@ -4323,6 +4376,13 @@
       "sha512": "sha512-cu1klZiuCwVYbXHs0QdnseuoRGG1/85VX9d1Sk0vbJlKp+HJUN/4pAS/fe2m9bTOYyIPdeCHeksMiVHgo1EfAA==",
       "path": "microsoft.identitymodel.tokens/5.5.0",
       "hashPath": "microsoft.identitymodel.tokens.5.5.0.nupkg.sha512"
+    },
+    "Microsoft.jQuery.Unobtrusive.Validation/3.2.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zu4ELNl5KW5vVfEeqeTxYFg/VvVmogCQDxNXnPDT9MjbtNpNdZVoRkq0nQAbtRo031PEUQsz2+3Qlb8RSInDOw==",
+      "path": "microsoft.jquery.unobtrusive.validation/3.2.12",
+      "hashPath": "microsoft.jquery.unobtrusive.validation.3.2.12.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/2.1.2": {
       "type": "package",
@@ -5170,6 +5230,13 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "Twitter.Bootstrap/3.0.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9SzxEOEB/rKKeTO/2Tv9uPRzQg/chRfofY9yZ71Sgpxfubp1IXiQlRRFc7IhH+fxo3S/u0umS4dUSgHeYnFIsw==",
+      "path": "twitter.bootstrap/3.0.1.1",
+      "hashPath": "twitter.bootstrap.3.0.1.1.nupkg.sha512"
     },
     "DataLayer/1.0.0": {
       "type": "project",

@@ -2,6 +2,7 @@
 using DataLayer.Services;
 using DomainModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -20,11 +21,13 @@ namespace ProductManagement.Controllers
         private readonly ILogger<ProductController> _logger;
         private readonly IConfiguration _configuration;
         string apiurl;
-        public ProductController(ILogger<ProductController> logger, IConfiguration configuration)
+        ProdDbContext _db;
+        public ProductController(ILogger<ProductController> logger, IConfiguration configuration, ProdDbContext db)
         {
             _logger = logger;
             _configuration = configuration;
             apiurl = _configuration.GetValue<string>("WebAPIBaseUrl");
+            _db = db;
         }
         public async Task<IActionResult> Index()
         {
@@ -40,26 +43,37 @@ namespace ProductManagement.Controllers
             }
             return View(prod);
         }
-
+        [HttpGet]
+        public async Task<IActionResult> Index(string ProdSearch)
+        {
+            ViewData["GetProductDetails"] = ProdSearch;
+            var prodquery = from x in _db.Products select x;
+            if (!string.IsNullOrEmpty(ProdSearch))
+            {
+                prodquery = prodquery.Where(x => x.Name.Contains(ProdSearch));
+            }
+            return View(await prodquery.AsNoTracking().ToListAsync());
+        }
         public ViewResult Create() => View();
+
         [HttpPost]
         public async Task<IActionResult> Create(Product product)
         {
             var prod = new Product();
             using (var client = new HttpClient())
             {
-                 var content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF32,"application/json");
+                var content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF32, "application/json");
                 using (var response = await client.PostAsync(apiurl, content))
                 {
                     var apiResponse = await response.Content.ReadAsStringAsync();
                     prod = JsonConvert.DeserializeObject<Product>(apiResponse);
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Product");
             //return View(rescharacter);
         }
         //[HttpDelete]
-        public ActionResult DeleteProduct(string id)
+        public ActionResult Delete(int id)
         {
             using (var client = new HttpClient())
             {
@@ -82,7 +96,7 @@ namespace ProductManagement.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var prodData = new Product();
-            
+
             using (HttpClient client = new HttpClient())
             {
                 //client.BaseAddress = new Uri("https://localhost:44356/api/product");
@@ -113,11 +127,11 @@ namespace ProductManagement.Controllers
             }
             return RedirectToAction("Index");
         }
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int id)
         {
             var prod = new Product();
             using (var client = new HttpClient())
-            {              
+            {
                 using (var response = await client.GetAsync($"{apiurl}/{id}"))
                 {
                     if (response.StatusCode == HttpStatusCode.OK)
@@ -127,8 +141,7 @@ namespace ProductManagement.Controllers
                     }
                     else
                     {
-                        //var noResponse = response.StatusCode.ToString();
-                        //return View(noResponse);
+
                         ViewBag.StatusCode = response.StatusCode;
                     }
                 }

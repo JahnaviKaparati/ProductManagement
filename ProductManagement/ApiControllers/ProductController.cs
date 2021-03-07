@@ -29,14 +29,29 @@ namespace ProductManagement.ApiControllers
             webHostEnvironment = hostEnvironment;
         }
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Get()
         {
             var model = data.GetAll();
-            if(model==null)
+            if (model == null)
             {
                 return NotFound();
             }
             return Ok(model);
+        }
+        [HttpGet("{id}")]
+        [Route("GetById/{id}")]
+
+        public IActionResult GetById(int id)
+        {
+            var singleData = _db.Products.FirstOrDefault(a => a.Id == id);
+            if (singleData != null)
+            {
+                return Ok(singleData);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
         [HttpPost]
         public IActionResult Create([FromForm] ProductViewModel model)
@@ -47,22 +62,22 @@ namespace ProductManagement.ApiControllers
 
                 Product product = new Product
                 {
-                    Id=model.Id,
-                    Name=model.Name,
-                    Code=model.Code,
-                    Available=model.Available,
-                    Price=model.Price,
-                    Rating=model.Rating,
-                    Image=uniqueFileName,
-                    Description=model.Description,
+                    Id = model.Id,
+                    Name = model.Name,
+                    Code = model.Code,
+                    Available = model.Available,
+                    Price = model.Price,
+                    Rating = model.Rating,
+                    Image = uniqueFileName,
+                    Description = model.Description,
                 };
                 _db.Add(product);
                 _db.SaveChanges();
-                return Ok(product);
+                return RedirectToAction("Index", "Product");
             }
-            return Ok();
+            return RedirectToAction("Index", "Product");
         }
-        private string UploadedFile([FromForm]ProductViewModel product)
+        private string UploadedFile([FromForm] ProductViewModel product)
         {
             string uniqueFileName = null;
 
@@ -73,7 +88,7 @@ namespace ProductManagement.ApiControllers
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                   product.Image.CopyTo(fileStream);
+                    product.Image.CopyTo(fileStream);
                 }
             }
             return uniqueFileName;
@@ -81,17 +96,15 @@ namespace ProductManagement.ApiControllers
 
         [HttpPut("{id}")]
 
-        public IActionResult Update(int id,[FromBody] ProductViewModel product)
+        public IActionResult Put(int id, [FromBody] Product product)
         {
-            
+            var res = _db.Products.FirstOrDefault(e => e.Id == id);
             if (product == null)
             {
                 return BadRequest($"Product with id {id.ToString()} not found");
             }
             else
             {
-                var res = _db.Products.FirstOrDefault(e => e.Id == id);
-               
                 res.Id = product.Id;
                 res.Name = product.Name;
                 res.Code = product.Code;
@@ -102,24 +115,21 @@ namespace ProductManagement.ApiControllers
                 return Ok(res);
             }
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Not a valid Character id");
+
+
+            var s = _db.Products
+                .Where(s => s.Id == id)
+                .FirstOrDefault();
+
+            _db.Entry(s).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            _db.SaveChanges();
+            return RedirectToAction("Index", "Product");
+        }
     }
 }
-//if (character == null)
-//{
-//    return BadRequest(ModelState);
-//}
-//else
-//{
-//    var result = _db.Characters.Where(s => s.Id == character.Id).FirstOrDefault<Character>();
-//    if (result == null)
-//    {
-//        return NotFound();
-//    }
-//    result.Name = character.Name;
-//    result.Strength = character.Strength;
-//    result.HitPoints = character.HitPoints;
-//    result.Intelligence = character.Intelligence;
-//    result.Defence = character.Defence;
-//    _db.SaveChanges();
-//}
-//return Ok();

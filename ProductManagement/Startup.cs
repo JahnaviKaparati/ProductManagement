@@ -39,6 +39,12 @@ namespace ProductManagement
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+            services.AddAuthentication().AddGoogle(Options =>
+            {
+                Options.ClientId = "694081709596-u1n730s20vtth37p09a5hvm1v99kjm4i.apps.googleusercontent.com";
+                Options.ClientSecret = "9fuIPYFG3Kx5RLUNADWFWsrx";
+
+            });
             services.AddRazorPages();
             services.AddScoped<IProductData, ProductService>();
         }
