@@ -79,13 +79,13 @@ namespace ProductManagement.Controllers
             }
 
         }
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
             var prodData = new Product();
+            
             using (HttpClient client = new HttpClient())
             {
-
-               
+                //client.BaseAddress = new Uri("https://localhost:44356/api/product");
                 using (var response = await client.GetAsync($"{apiurl}/{id}"))
                 {
                     var apiResponse = await response.Content.ReadAsStringAsync();
@@ -98,7 +98,7 @@ namespace ProductManagement.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> Edit(string id, Product product)
+        public async Task<IActionResult> Edit(int id, Product product)
         {
             var prodData = new Product();
             using (var client = new HttpClient())

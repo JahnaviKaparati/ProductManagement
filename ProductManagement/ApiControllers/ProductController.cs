@@ -78,5 +78,48 @@ namespace ProductManagement.ApiControllers
             }
             return uniqueFileName;
         }
+
+        [HttpPut("{id}")]
+
+        public IActionResult Update(int id,[FromBody] ProductViewModel product)
+        {
+            
+            if (product == null)
+            {
+                return BadRequest($"Product with id {id.ToString()} not found");
+            }
+            else
+            {
+                var res = _db.Products.FirstOrDefault(e => e.Id == id);
+               
+                res.Id = product.Id;
+                res.Name = product.Name;
+                res.Code = product.Code;
+                res.Description = product.Description;
+                res.Available = product.Available;
+                res.Price = product.Price;
+                _db.SaveChanges();
+                return Ok(res);
+            }
+        }
     }
 }
+//if (character == null)
+//{
+//    return BadRequest(ModelState);
+//}
+//else
+//{
+//    var result = _db.Characters.Where(s => s.Id == character.Id).FirstOrDefault<Character>();
+//    if (result == null)
+//    {
+//        return NotFound();
+//    }
+//    result.Name = character.Name;
+//    result.Strength = character.Strength;
+//    result.HitPoints = character.HitPoints;
+//    result.Intelligence = character.Intelligence;
+//    result.Defence = character.Defence;
+//    _db.SaveChanges();
+//}
+//return Ok();
