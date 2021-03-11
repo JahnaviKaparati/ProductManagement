@@ -8,6 +8,7 @@ namespace DataLayer.Services
     public interface IProductData
     {
         IEnumerable<Product> GetAll();
+        IEnumerable<Product> Products { get; }
         Product GetById(int id);
         IEnumerable<Product> GetByName(string name);
         void Add(Product product);

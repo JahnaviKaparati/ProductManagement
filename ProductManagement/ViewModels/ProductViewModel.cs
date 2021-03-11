@@ -14,7 +14,7 @@ namespace ProductManagement.ViewModels
         public string Code { get; set; }
         public DateTime Available { get; set; }
         public double Price { get; set; }
-        public int Rating { get; set; }
+        public double Rating { get; set; }
         public IFormFile Image { get; set; }
         public string Description { get; set; }
     }

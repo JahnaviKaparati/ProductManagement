@@ -16,6 +16,11 @@ namespace DataLayer.Services
         {
             _db = db;
         }
+
+        public IEnumerable<Product> Products => throw new NotImplementedException();
+
+        //public IEnumerable<Product> Products => throw new NotImplementedException();
+
         public void Add(Product product)
         {
             

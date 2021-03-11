@@ -1,6 +1,7 @@
 ﻿using DataLayer;
 using DataLayer.Services;
 using DomainModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,14 +21,16 @@ namespace ProductManagement.Controllers
     {
         private readonly ILogger<ProductController> _logger;
         private readonly IConfiguration _configuration;
+        private readonly IProductData _ipd;
         string apiurl;
         ProdDbContext _db;
-        public ProductController(ILogger<ProductController> logger, IConfiguration configuration, ProdDbContext db)
+        public ProductController(ILogger<ProductController> logger, IConfiguration configuration, ProdDbContext db, IProductData ipd)
         {
             _logger = logger;
             _configuration = configuration;
             apiurl = _configuration.GetValue<string>("WebAPIBaseUrl");
             _db = db;
+            _ipd = ipd;
         }
         public async Task<IActionResult> Index()
         {
@@ -86,7 +89,6 @@ namespace ProductManagement.Controllers
                 var result = deleteTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-
                     return RedirectToAction("Index");
                 }
                 return RedirectToAction("Index");
@@ -152,6 +154,13 @@ namespace ProductManagement.Controllers
 
         }
 
+        public IActionResult List(string prodCode)
+        {
 
-    }
+            IEnumerable<Product> products;
+
+            products = _db.Products.Where(p => p.Code.Contains(prodCode)).OrderBy(p => p.Id);
+            return View(products);
+        }
+    }    
 }

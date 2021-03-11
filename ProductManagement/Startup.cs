@@ -36,7 +36,11 @@ namespace ProductManagement
             services.AddDbContext<ProdDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("conn")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddAuthentication().AddGoogle(Options =>
@@ -45,6 +49,21 @@ namespace ProductManagement
                 Options.ClientSecret = "9fuIPYFG3Kx5RLUNADWFWsrx";
 
             });
+            services.AddAuthentication().AddFacebook(Options =>
+            {
+                Options.AppId = "869047237161771";
+                Options.AppSecret = "e6ed92ff85e20e828eddbb9fb3a66f63";
+
+            });
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                //options.Cookie.HttpOnly = true;
+                // Make the session cookie essential
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddRazorPages();
             services.AddScoped<IProductData, ProductService>();
         }
@@ -67,7 +86,7 @@ namespace ProductManagement
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseStaticFiles();

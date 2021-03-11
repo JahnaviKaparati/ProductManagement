@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataLayer.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProductManagement.Models;
 using System;
@@ -12,15 +13,17 @@ namespace ProductManagement.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IProductData _data;
+        public HomeController(ILogger<HomeController> logger, IProductData data)
         {
             _logger = logger;
+            _data = data;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var model = _data.GetAll();
+            return View(model);
         }
 
         public IActionResult Privacy()
