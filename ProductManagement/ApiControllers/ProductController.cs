@@ -4,7 +4,6 @@ using DomainModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ProductManagement.Data;
 using ProductManagement.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -96,7 +95,7 @@ namespace ProductManagement.ApiControllers
 
         [HttpPut("{id}")]
 
-        public IActionResult Put(int id, [FromBody] Product product)
+        public IActionResult Put(int id, [FromForm] Product product)//edit
         {
             var res = _db.Products.FirstOrDefault(e => e.Id == id);
             if (product == null)

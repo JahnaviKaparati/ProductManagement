@@ -1,29 +1,34 @@
 ﻿using DomainModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
 namespace DataLayer.Services
 {
     public class ProductService : IProductData
     {
         private readonly ProdDbContext _db;
+
         public ProductService(ProdDbContext db)
         {
             _db = db;
+
         }
 
-        public IEnumerable<Product> Products => throw new NotImplementedException();
+        public IEnumerable<Product> Products
+        {
+            get
+            {
+                return _db.Products.Include(c => c);
+            }
+        }
 
-        //public IEnumerable<Product> Products => throw new NotImplementedException();
 
         public void Add(Product product)
         {
-            
+
             _db.Products.Add(product);
             _db.SaveChanges();
         }
@@ -49,6 +54,7 @@ namespace DataLayer.Services
         {
             return _db.Products.Where(r => r.Name.Contains(name)).ToList();
         }
+
 
         public void Update(Product product)
         {

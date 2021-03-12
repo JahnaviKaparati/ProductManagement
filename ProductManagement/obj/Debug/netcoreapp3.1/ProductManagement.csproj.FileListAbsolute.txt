@@ -173,7 +173,6 @@ F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netc
 F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Product\Index.cshtml.g.cs
-F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Product\Edit.cshtml.g.cs
 F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Product\Details.cshtml.g.cs
 F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Google.dll
 F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\bin\Debug\netcoreapp3.1\libman.json
@@ -187,3 +186,4 @@ F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\bin\Debug\netc
 F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Details.cshtml.g.cs
 F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Product\Create.cshtml.g.cs
 F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Customer\List.cshtml.g.cs
+F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Product\Edit.cshtml.g.cs

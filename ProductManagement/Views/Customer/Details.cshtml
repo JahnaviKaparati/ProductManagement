@@ -5,13 +5,13 @@
 
 @using (Html.BeginForm())
 {
-<div class="card-header col-md-12 col-md-4 form-group row" style="background-color:cadetblue">
-    <h4 class="my-0 font-weight-normal">
-        <label style="font-size: 23px;color: white">Product Details: @Model.Name</label>
-    </h4>
-</div>
+
 <div class="border backgroundWhite row">
-    
+    <div class="col-md-12" style="background-color:#2c66dc">
+        <h4 class="my-0 font-weight-normal">
+            <label style="font-size: 23px;color: white">Product Details: @Model.Name</label>
+        </h4>
+    </div>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="col-md-8">
@@ -29,9 +29,9 @@
                 <label asp-for="@Model.Code" class="text-info font-weight-bold">Product Code</label>
             </div>
             <div class="col-md-8">
-                <div class="border rounded p-2">
+                
                     <label>@Model.Code</label>
-                </div>
+               
             </div>
         </div>
         <div class="form-group row">
@@ -39,9 +39,9 @@
                 <label asp-for="@Model.Description" class="text-info font-weight-bold">Description</label>
             </div>
             <div class="col-md-8">
-                <div class="border rounded p-2">
+               
                     <label>@Model.Description</label>
-                </div>
+       
             </div>
         </div>
         <div class="form-group row">
@@ -49,7 +49,7 @@
                 <label asp-for="@Model.Price" class="text-info font-weight-bold">Price:</label>
             </div>
             <div class="col-md-8">
-                <label>@Model.Price</label>
+                <label>$@Model.Price</label>
             </div>
         </div>
 

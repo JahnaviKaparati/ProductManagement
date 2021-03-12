@@ -3,6 +3,7 @@ using DomainModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,6 +20,17 @@ namespace ProductManagement.Controllers
         public IActionResult Index()
         {
             return View(db.Products.ToList());
+        }
+        [HttpGet]
+        public IActionResult Index(string prodSearch)
+        {
+            ViewData["GetProductDetails"] = prodSearch;
+            var prodquery = from x in db.Products select x;
+            if (!string.IsNullOrEmpty(prodSearch))
+            {
+                prodquery = prodquery.Where(x => x.Name.Contains(prodSearch));
+            }
+            return View(prodquery.AsNoTracking().ToList());
         }
         public IActionResult Details(int id)
         {
