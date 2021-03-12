@@ -4,6 +4,7 @@ using DomainModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProductManagement.Data;
 using ProductManagement.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,12 @@ namespace ProductManagement.ApiControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         private readonly IProductData data;
         private readonly ProdDbContext _db;
         private readonly IWebHostEnvironment webHostEnvironment;
-        public ProductController(IProductData _data, ProdDbContext db, IWebHostEnvironment hostEnvironment)
+        public ProductsController(IProductData _data, ProdDbContext db, IWebHostEnvironment hostEnvironment)
         {
             data = _data;
             _db = db;
@@ -53,49 +54,25 @@ namespace ProductManagement.ApiControllers
             }
         }
         [HttpPost]
-        public IActionResult Create([FromForm] ProductViewModel model)
+        public IActionResult Post([FromBody] Product product)
         {
-            if (ModelState.IsValid)
+            if (product == null)
             {
-                string uniqueFileName = UploadedFile(model);
-
-                Product product = new Product
-                {
-                    Id = model.Id,
-                    Name = model.Name,
-                    Code = model.Code,
-                    Available = model.Available,
-                    Price = model.Price,
-                    Rating = model.Rating,
-                    Image = uniqueFileName,
-                    Description = model.Description,
-                };
-                _db.Add(product);
-                _db.SaveChanges();
-                return RedirectToAction("Index", "Product");
+                return NotFound();
             }
-            return RedirectToAction("Index", "Product");
-        }
-        private string UploadedFile([FromForm] ProductViewModel product)
-        {
-            string uniqueFileName = null;
-
-            if (product.Image != null)
+            else
             {
-                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "Images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + product.Image.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    product.Image.CopyTo(fileStream);
-                }
+
+                _db.Products.Add(product);
+
+                return Ok();
             }
-            return uniqueFileName;
         }
+
 
         [HttpPut("{id}")]
 
-        public IActionResult Put(int id, [FromForm] Product product)//edit
+        public IActionResult Put(int id, [FromBody] Product product)
         {
             var res = _db.Products.FirstOrDefault(e => e.Id == id);
             if (product == null)
@@ -128,7 +105,7 @@ namespace ProductManagement.ApiControllers
 
             _db.Entry(s).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
             _db.SaveChanges();
-            return RedirectToAction("Index", "Product");
+            return Ok(s);
         }
     }
 }

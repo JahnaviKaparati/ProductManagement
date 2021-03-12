@@ -1,13 +1,16 @@
 ﻿using DataLayer;
 using DataLayer.Services;
 using DomainModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using ProductManagement.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -16,29 +19,29 @@ using System.Threading.Tasks;
 
 namespace ProductManagement.Controllers
 {
+
     public class ProductController : Controller
     {
         private readonly ILogger<ProductController> _logger;
         private readonly IConfiguration _configuration;
         string apiurl;
-        ProdDbContext _db;
-
-        public ProductController(ILogger<ProductController> logger, IConfiguration configuration, ProdDbContext db)
-
+        private readonly ProdDbContext _db;
+        private readonly IWebHostEnvironment webHostEnvironment;
+        public ProductController(ILogger<ProductController> logger, ProdDbContext db, IConfiguration configuration, IWebHostEnvironment hostEnvironment)
         {
             _logger = logger;
-            _configuration = configuration;
-            apiurl = _configuration.GetValue<string>("WebAPIBaseUrl");
             _db = db;
+            _configuration = configuration;
 
+            apiurl = _configuration.GetValue<string>("WebAPIBaseUrl");
+            webHostEnvironment = hostEnvironment;
         }
         public async Task<IActionResult> Index()
         {
-
             var prod = new List<Product>();
             using (HttpClient client = new HttpClient())
             {
-                using (var response = await client.GetAsync("https://localhost:44356/api/product"))
+                using (var response = await client.GetAsync(apiurl))
                 /* using (var response = await client.GetAsync(apiurl))*/
                 {
                     var apiResponse = await response.Content.ReadAsStringAsync();
@@ -47,45 +50,61 @@ namespace ProductManagement.Controllers
             }
             return View(prod);
         }
-        [HttpGet]
-        public async Task<IActionResult> Index(string ProdSearch)
-        {
-            ViewData["GetProductDetails"] = ProdSearch;
-            var prodquery = from x in _db.Products select x;
-            if (!string.IsNullOrEmpty(ProdSearch))
-            {
-                prodquery = prodquery.Where(x => x.Name.Contains(ProdSearch));
-            }
-            return View(await prodquery.AsNoTracking().ToListAsync());
-        }
 
         public ViewResult Create() => View();
 
+
         [HttpPost]
-        public async Task<IActionResult> Create(Product product)
+        public IActionResult Create(ProductViewModel model)
         {
-            var prod = new Product();
-            using (var client = new HttpClient())
+            if (ModelState.IsValid)
             {
-                var content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF32, "application/json");
-                using (var response = await client.PostAsync(apiurl, content))
+                string uniqueFileName = UploadedFile(model);
+
+                Product product = new Product
                 {
-                    var apiResponse = await response.Content.ReadAsStringAsync();
-                    prod = JsonConvert.DeserializeObject<Product>(apiResponse);
+                    Id = model.Id,
+                    Name = model.Name,
+                    Code = model.Code,
+                    Available = model.Available,
+                    Price = model.Price,
+                    Rating = model.Rating,
+                    Image = uniqueFileName,
+                    Description = model.Description,
+                };
+
+                _db.Products.Add(product);
+                _db.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+
+        private string UploadedFile(ProductViewModel model)
+        {
+            string uniqueFileName = null;
+
+            if (model.Image != null)
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "Images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Image.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.Image.CopyTo(fileStream);
                 }
             }
-            return RedirectToAction("Index", "Product");
-            //return View(rescharacter);
+            return uniqueFileName;
         }
         //[HttpDelete]
         public ActionResult Delete(int id)
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44356/api/product");
+                client.BaseAddress = new Uri(apiurl);
 
                 //HTTP DELETE
-                var deleteTask = client.DeleteAsync("Product/" + id.ToString());
+                var deleteTask = client.DeleteAsync($"{apiurl}/{id}");
                 deleteTask.Wait();
 
                 var result = deleteTask.Result;
@@ -104,7 +123,7 @@ namespace ProductManagement.Controllers
 
             using (HttpClient client = new HttpClient())
             {
-                //client.BaseAddress = new Uri("https://localhost:44356/api/product");
+
                 using (var response = await client.GetAsync($"{apiurl}/{id}"))
                 {
                     var apiResponse = await response.Content.ReadAsStringAsync();
@@ -159,8 +178,5 @@ namespace ProductManagement.Controllers
         }
 
 
-
-
     }
-
 }

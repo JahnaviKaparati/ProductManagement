@@ -80,6 +80,7 @@
 
     <td>
         @Html.ActionLink("Edit", "Edit", new { Controller = "Product", id = item.Id })
+        <a href="~/Product/Delete?id=@item.Id" class="btn btn-info">Delete</a>
     </td>
 </tr>
         }
