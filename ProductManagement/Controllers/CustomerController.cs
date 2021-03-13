@@ -45,5 +45,10 @@ namespace ProductManagement.Controllers
             products = db.Products.Where(p => p.Code.Contains(prodCode)).OrderBy(p => p.Id);
             return View(products);
         }
+
+        public IActionResult ListOfProducts()
+        {
+            return View();
+        }
     }
 }

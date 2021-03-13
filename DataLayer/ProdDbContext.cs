@@ -1,5 +1,4 @@
 ﻿using DomainModels;
-using DomainModels.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -17,6 +16,5 @@ namespace DataLayer
              
         }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
     }
 }

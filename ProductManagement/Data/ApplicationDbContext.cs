@@ -14,5 +14,6 @@ namespace ProductManagement.Data
         {
         }
         public DbSet<UserRegister> UserRegisters { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
     }
 }

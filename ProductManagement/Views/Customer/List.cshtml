@@ -6,7 +6,7 @@
         @foreach (var product in Model)
         {
             <div class="col-4">
-                <div class="card mb-4">
+                <div class="card mb-4"style="background-color:white">
                     <div class="card-header" style="background-color:cadetblue">
                         <h4 class="my-0 font-weight-normal">
                             <label style="font-size: 23px;color: white">@product.Name</label>
@@ -18,7 +18,7 @@
                             <div class="btn-group">
                                 <label style="font-size: 20px;color: #a51313"><b>Price : $@product.Price</b></label>
                             </div>
-                            <a asp-action="Details" asp-controller="Customer" asp-route-id="@product.Id" class="btn btn-outline-info">Deatils</a>
+                            <a asp-action="Details" asp-controller="Customer" asp-route-id="@product.Id" class="btn btn-info">Deatils</a>
                         </div>
                     </div>
                 </div>

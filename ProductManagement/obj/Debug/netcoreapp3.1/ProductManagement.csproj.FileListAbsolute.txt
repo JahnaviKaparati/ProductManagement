@@ -187,3 +187,8 @@ F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netc
 F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Product\Create.cshtml.g.cs
 F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Customer\List.cshtml.g.cs
 F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Product\Edit.cshtml.g.cs
+F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Customer\ListOfProducts.cshtml.g.cs
+F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Cart\ShowCart.cshtml.g.cs
+F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Summary.cshtml.g.cs
+F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Payment.cshtml.g.cs
+F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\obj\Debug\netcoreapp3.1\Razor\Views\Cart\AddToCart.cshtml.g.cs
