@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using ProductManagement.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -49,6 +50,17 @@ namespace ProductManagement.Controllers
                 }
             }
             return View(prod);
+        }
+        [HttpGet]
+        public IActionResult Index(string ProdSearch)
+        {
+            ViewData["GetProductDetails"] = ProdSearch;
+            var prodquery = from x in _db.Products select x;
+            if (!string.IsNullOrEmpty(ProdSearch))
+            {
+                prodquery = prodquery.Where(x => x.Name.Contains(ProdSearch));
+            }
+            return View(prodquery);
         }
 
         public ViewResult Create() => View();
