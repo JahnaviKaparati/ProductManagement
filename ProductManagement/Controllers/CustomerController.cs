@@ -1,6 +1,8 @@
 ﻿using DataLayer;
 using DomainModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProductManagement.Uitility;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -32,6 +34,7 @@ namespace ProductManagement.Controllers
             }
             return View(prodquery.AsNoTracking().ToList());
         }
+        [Authorize(Roles =SD.CustomerEndUser)]
         public IActionResult Details(int id)
         {
             var prod = db.Products.Where(e => e.Id == id).FirstOrDefault();
@@ -48,7 +51,7 @@ namespace ProductManagement.Controllers
 
         public IActionResult ListOfProducts()
         {
-            return View();
+            return View(db.Products.ToList());
         }
     }
 }

@@ -136,7 +136,7 @@ namespace ProductManagement.Controllers
 
         [HttpPost]
 
-        public async Task<IActionResult> Edit(int id, Product product)
+        public async Task<IActionResult> Edits(int id, Product product)
         {
             var prodData = new Product();
             using (var client = new HttpClient())
@@ -176,7 +176,21 @@ namespace ProductManagement.Controllers
 
 
         }
-
+        [HttpPost]
+        public IActionResult Edit(int id,Product product)
+        {
+            var res = _db.Products.FirstOrDefault(e => e.Id == id);
+            
+                res.Id = product.Id;
+                res.Name = product.Name;
+                res.Code = product.Code;
+                res.Description = product.Description;
+                res.Available = product.Available;
+                res.Price = product.Price;
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            
+        }
 
     }
 }

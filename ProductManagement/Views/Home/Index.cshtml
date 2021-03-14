@@ -4,12 +4,14 @@
 }
 
 
-<style>
+@*<style>
 
 
 
-/*#landingPage { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEVPWzg32pC6q_T8AxtDhuhFfNRxaXwlLVnA&usqp=CAU') }
-*/    .home-text {
+    #landingPage {
+        background-image: url('file:///F:\DotNetBatchJan2021\WebApps\ProductManagement\ProductManagement\wwwroot\Images\bg.jpg');
+    }
+    .home-text {
         position: absolute;
         padding-left: 40px;
         padding-top: 40px;
@@ -52,12 +54,12 @@
             .home-text a:hover {
                 background-color: darkgreen;
             }
-</style>
+</style>*@
 
 
 
 
-<body id="landingPage">
+
     <div class="home-area">
         <div class="home-container">
             <div class="col-md-12 col-lg-offset-4">
@@ -86,41 +88,44 @@
             </div>
         </div>
     </div>
-  
+
     <br />
     <div class="row">
-        <div class="col-4">
-            <div class="card mb-4 bg-light">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">
-                        <label style="font-size: 23px;color:black">Garden tools</label>
-                    </h4>
-                </div>
-                <a asp-controller="Customer" asp-action="List" asp-route-prodCode="gnd"><img src="~/Images/Gardening-HAND.jpg" alt="Card Image" class="card-img-top" style="height: 200px;width:347px" /></a>
-</div>
+                <div class="col-4">
+                    <div class="card mb-4 bg-light">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">
+                                <label style="font-size: 23px;color:black">Garden tools</label>
+                            </h4>
+                        </div>
+                        <a asp-controller="Customer" asp-action="List" asp-route-prodCode="gnd"><img src="~/Images/Gardening-HAND.jpg" alt="Card Image" class="card-img-top" style="height: 200px;width:347px" /></a>
         </div>
-        <div class="col-4">
-            <div class="card mb-4 bg-light">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">
-                        <label style="font-size: 23px;color:black">Video Games</label>
-                    </h4>
                 </div>
-                <a asp-controller="Customer" asp-action="List" asp-route-prodCode="vmg"><img src="~/Images/VideoGameTool.jpg" alt="Card Image" class="card-img-top" style="height: 200px;width:347px" /></a>
-</div>
+                <div class="col-4">
+                    <div class="card mb-4 bg-light">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">
+                                <label style="font-size: 23px;color:black">Video Games</label>
+                            </h4>
+                        </div>
+                        <a asp-controller="Customer" asp-action="List" asp-route-prodCode="vmg"><img src="~/Images/VideoGameTool.jpg" alt="Card Image" class="card-img-top" style="height: 200px;width:347px" /></a>
         </div>
-        <div class="col-4">
-            <div class="card mb-4 bg-light">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">
-                        <label style="font-size: 23px;color:black">Iron Tools</label>
-                    </h4>
                 </div>
-                <a asp-controller="Customer" asp-action="List" asp-route-prodCode="tdx"><img src="~/Images/IronTools.jpg" alt="Card Image" class="card-img-top" style="height: 200px;width:347px" /></a>
-</div>
+                <div class="col-4">
+                    <div class="card mb-4 bg-light">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">
+                                <label style="font-size: 23px;color:black">Iron Tools</label>
+                            </h4>
+                        </div>
+                        <a asp-controller="Customer" asp-action="List" asp-route-prodCode="tdx"><img src="~/Images/IronTools.jpg" alt="Card Image" class="card-img-top" style="height: 200px;width:347px" /></a>
         </div>
-    </div>
-</body>
+                </div>
+            </div>
+    @*<a class="btn btn-lg btn-primary" href="~/Customer/Index" role="button">View Menu</a>*@
+    @*@Html.ActionLink("View Product", "Index", "Customer", new { @class = "btn btn-success" }, new { @class = "center" })*@
+    @*<a href="/Customer/Index" style="align-content:center"><p class="btn btn-info"> View More </p></a>*@
+
 
     
 

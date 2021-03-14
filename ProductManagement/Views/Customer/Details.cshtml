@@ -7,14 +7,14 @@
 {
 
 <div class="border row" style="background-color:#ffffff">
-    <div class="col-md-12" style="background-color:#9c9797">
+    <div class="col-md-12" style="background-color:#619fbf">
         <h4 class="my-0 font-weight-normal">
             <label style="font-size: 23px;color: white">Product Details: @Model.Name</label>
         </h4>
     </div>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <div class="col-md-8" style="background-color:white">
+    <div class="col-md-8" style="background-color:#619fbf">
 
         <div class="form-group row">
             <div class="col-md-4">
@@ -83,7 +83,7 @@
             <div class="col-md-4">
 
                 @Html.ActionLink("Back", "Index", new { Controller = "Customer" }, new { @class = "btn btn-primary" })
-                <a class="btn btn-dark" href="/Cart/AddToCart/@Model.Id"><button type="submit" class="btn btn-success">Add To Cart</button></a>
+                <a class="btn btn-danger" href="/Cart/AddToCart/@Model.Id" type="submit">Add To Cart</a>
             </div>
 
         </div>

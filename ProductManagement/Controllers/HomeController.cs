@@ -23,6 +23,7 @@ namespace ProductManagement.Controllers
         public IActionResult Index()
         {
             var model = _data.GetAll();
+
             return View(model);
         }
 

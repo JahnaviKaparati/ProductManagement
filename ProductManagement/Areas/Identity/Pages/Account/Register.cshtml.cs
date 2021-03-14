@@ -54,24 +54,38 @@ namespace ProductManagement.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [RegularExpression(@"^[A-Za-z ]{2,10}$", ErrorMessage = "Enter valid name ")]
             public string Name { get; set; }
-            [Required]
+
+            //[RegularExpression(@"^[a-zA-Z]{4,10}", ErrorMessage = "Enter valid Address")]
+            [Display(Name = "Address")]
+            [StringLength(200)]
             public string Address { get; set; }
             [Required]
+            [RegularExpression(@"^[A-Za-z ]{2,30}$", ErrorMessage = "Enter valid city name ")]
             public string City { get; set; }
             [Required]
+
+            [RegularExpression(@"^[A-Za-z ]{2,30}$", ErrorMessage = "Enter valid state name ")]
             public string State { get; set; }
             [Required]
+            [RegularExpression(@"^[1-9]\d{5}$", ErrorMessage = "Enter valid pincode")]
             public string PinCode { get; set; }
-            [Required]
+            [Required(ErrorMessage = "Please Enter Mobile No")]
+            [Display(Name = "Mobile")]
+            [RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "The Mobile must contains 10 numbers and start with 6/7/8/9")]
             public string PhoneNumber { get; set; }
             [Required]
             [EmailAddress]
+            
+            [RegularExpression(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$", ErrorMessage = "Please Enter Correct Email Address")]
+           //[RegularExpression("^[0-9a-zA-Z]+[.+-_]{0,1}[0-9a-zA-Z]+[@][a-zA-Z]+[.][a-zA-Z]{2,3}([a-zA-Z]{2,3}){0,1}", ErrorMessage = "Please Enter Correct Email Address")]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            
+            [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Minimum eight characters, at least one letter, one number and one special character")]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }

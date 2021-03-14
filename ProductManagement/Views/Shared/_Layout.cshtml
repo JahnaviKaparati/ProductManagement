@@ -2,12 +2,13 @@
 @using ProductManagement.Global;
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ProductManagement</title>
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-Superhero.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/jquery-ui.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -24,13 +25,24 @@
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    body { /*background-image: url('/Images/bg.jpg');*/ background-image: url('https://static-cse.canva.com/blob/140234/Rainbow-Gradient-Pink-and-Purple-Zoom-Virtual-Background.e85a1a2a.png'); background-repeat: repeat; background-position: center; background-size: cover; color: black }
+
+        .bg-image {
+            /* Add the blur effect */
+            -webkit-filter: blur(4px);
+            filter: blur(4px);
+            /* Full height */
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-3" style="background-color:#c8bebe;color:white">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-3" style="background-color:#0f7297">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ProductManagement</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="color:white">ProductManagement</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -41,22 +53,26 @@
                         @if (User.IsInRole(SD.AdminEndUser))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">All Products</a>
+                                <a class="nav-link" asp-area="" asp-controller="Product" asp-action="Index" style="color:white">All Products</a>
                             </li>
-                            <li class="nav-item">
+                            @*<li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">Product</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="ListOfProducts">Product List</a>
                             </li>
 
+                            <li><a href="/Cart/ShowCart" class="btn btn-sm text-white"><i class="fas fa-shopping-cart fa-lg" aria-hidden="true">&nbsp;(@GlobalVariables.cartItemCount)</i></a></li>*@
+
+
                         }
                         @if (User.IsInRole(SD.CustomerEndUser))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">Product</a>
-                            </li>
-                            <li><a href="/Cart/ShowCart" class="btn btn-sm text-white"><i class="fa fa-shopping-cart text-danger" aria-hidden="true">&nbsp;(@GlobalVariables.cartItemCount)</i></a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Customer" asp-action="Index" style="color:white">Product</a>
+                        @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="color:white">ProductManagement</a>*@
+                    </li>
+                            <li><a href="/Cart/ShowCart" class="btn btn-sm text-white"><i class="fas fa-shopping-cart fa-lg" aria-hidden="true">&nbsp;(@GlobalVariables.cartItemCount)</i></a></li>
                         }
                     </ul>
                 </div>
@@ -71,7 +87,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - ProductManagement - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - ProductManagement
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

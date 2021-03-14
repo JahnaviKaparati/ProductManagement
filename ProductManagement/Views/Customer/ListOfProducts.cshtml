@@ -1,4 +1,4 @@
-﻿@model List<DomainModels.Product>
+﻿@model IEnumerable<DomainModels.Product>
 @{
     ViewData["Title"] = "ListOfProducts";
 }
@@ -12,18 +12,18 @@
             </div>
             @foreach (var item in Model)
             {
-        <button type="button" class="btn btn-success detailsBtn"
+        @*<button type="button" class="btn btn-success detailsBtn"
                 data-id=@item.Id>
             @item.Name (@item.Code)
-        </button>
+        </button>*@
                
-                @*<a class="btn btn-outline-info detailsBtn" data-Name="@item.Id">@item.Name (@item.Code)</a>*@
+                <a class="btn btn-outline-info detailsBtn" data-Name="@item.Id">@item.Name (@item.Code)</a>
             }
         </div>
     </div>
 </div>
 @*details*@
-<div class="panel panel-primary">
+<!--<div class="panel panel-primary">
     <div class="panel-heading">
         Product Details 
     </div>
@@ -40,9 +40,9 @@
         </form>
     </div>
     <div class="panel-footer">
-        <button type="button" id="btnBack" class="btn btn-success">Back</button>
+        <button type="button" id="btnBack" class="btn btn-success">Back</button>-->
         @*<button type="button" id="btnCancel" class="btn btn-default">Cancel</button>*@
-    </div>
+    <!--</div>
 </div>
 
 
@@ -65,4 +65,4 @@
             }
         })
     })
-</script>
+</script>-->

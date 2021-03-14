@@ -67,14 +67,16 @@
 {
     
     <div class="border row" style="background-color:#ffffff">
-        <div class="col-md-12" style="background-color:#9c9797">
+        <div class="col-md-12" style="        background-color: #619fbf
+">
             <h4 class="my-0 font-weight-normal">
                 <label style="font-size: 23px;color: white">Product Details: @Model.Name</label>
             </h4>
         </div>
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <div class="col-md-8" style="background-color:white">
+        <div class="col-md-8" style="        background-color: #619fbf
+">
 
             <div class="form-group row">
                 <div class="col-md-4">
@@ -118,7 +120,8 @@
                     <label asp-for="@Model.Available" class="text-black-50 font-weight-bold">Availability</label>
                 </div>
                 <div class="col-md-8">
-                    <label style="color:black">@Model.Available</label>
+                    @*<label style="color:black">@Model.Available</label>*@
+                    @Html.DisplayFor(model => model.Available)
                 </div>
             </div>
             <div class="form-group row">

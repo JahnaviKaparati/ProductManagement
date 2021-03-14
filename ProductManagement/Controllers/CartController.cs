@@ -49,9 +49,10 @@ namespace ProductManagement.Controllers
 
                 };
                 _db.ShoppingCarts.Add(addcartitem);
+                GlobalVariables.cartItemCount = GlobalVariables.cartItemCount + 1;
             }
             _db.SaveChanges();
-            GlobalVariables.cartItemCount = GlobalVariables.cartItemCount + 1;
+            
             return RedirectToAction("ShowCart");
             // return View();
         }
@@ -97,6 +98,20 @@ namespace ProductManagement.Controllers
         public ActionResult Payment()
         {
             return View();
+        }
+        public ActionResult ClearCartItems()//To clear cart
+        {
+            var cartItems = _db.ShoppingCarts.Where(user => user.ApplicationUserId == User.Identity.Name).ToList();
+            if (cartItems != null)
+            {
+                foreach (var v in cartItems)
+                {
+                    var data = _db.ShoppingCarts.Remove(v);
+                    _db.SaveChanges();
+                    GlobalVariables.cartItemCount = GlobalVariables.cartItemCount - 1;
+                }
+            }
+            return RedirectToAction("Payment");
         }
     }
 }

@@ -23,13 +23,13 @@
                     </div>
 
                     <div class="col-sm-5">
-                        <h5>@item.Product.Name</h5>
-                        <p>
+                        <h5 style="color:black">@item.Product.Name</h5>
+                        <p style="color:black">
                             @item.Product.Description
                         </p>
                     </div>
                     <div class="col-sm-2 font-weight-bolder">
-                        $<span class="itemPrice"> @item.Product.Price</span> &nbsp; &#10005;  <span> @item.Count </span>
+                        $<span class="itemPrice" style="color:black"> @item.Product.Price</span> &nbsp; &#10005;  <span style="color:black"> @item.Count </span>
                     </div>
                     <div class="col-sm-3 text-center">
                         <a href="CartItemCount?id=@item.Id&type=remove" class="btn btn-sm btn-danger" data-ajax="true" data-ajax-method="GET" data-ajax-success="AjaxSuccess1" data-ajax-failure="AjaxError1" font-weight-bold text-white" onclick="removeProduct(this)"><i class="fa fa-minus"></i></a>

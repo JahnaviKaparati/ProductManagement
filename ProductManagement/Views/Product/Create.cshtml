@@ -22,7 +22,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Available" class="control-label"></label>
-                <input asp-for="Available" class="form-control" />
+                @*<input asp-for="Available" min="@DateTime.Now" class="form-control" />*@
+            <input asp-for="Available" class="form-control" min="2021-03-14" type="date" />
                 <span asp-validation-for="Available" class="text-danger"></span>
             </div>
             <div class="form-group">

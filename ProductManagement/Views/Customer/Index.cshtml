@@ -3,12 +3,13 @@
     @{
     ViewData["Title"] = "Index";
     }
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <form method="get" asp-action="Index">
         <p>
             <input type="search" placeholder="Enter name..." value="@ViewData["GetProductDetails"]" name="ProdSearch" style="width:500px" required />
             <input type="submit" value="Search" class="btn btn-primary" />
-            <a class="btn btn-outline-info" asp-action="Index">Get All products</a>
+            @*<button style="font-size:24px" class="btn btn-info"><i class="fas fa-search"></i></button>*@
+            <a class="btn btn-outline-info" asp-action="Index">View All</a>
         </p>
     </form>
 
