@@ -4,20 +4,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <form method="get" asp-action="Index">
     <p>
-        <a href="~/Product/Create" class="btn btn-info"><i class="fa fa-plus left"> Create New</i></a>
+        
         <input type="search" placeholder="Enter name..." value="@ViewData["GetProductDetails"]" name="ProdSearch" style="width:500px" required />
         <input type="submit" value="Search" class="btn btn-primary" />
         <a class="btn btn-outline-primary" asp-action="Index">View All</a>
     </p>
 </form>
 <br/>
-@*<form class="text-right">
-    <p>
 
-        <a href="~/Product/Create" class="btn btn-info"><i class="fa fa-plus left"> Create New</i></a>
-
-    </p>
-</form>*@
 <table class="table ">
     <thead>
         <tr>
@@ -63,7 +57,7 @@
         @Html.DisplayFor(modelItem => item.Available)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.Price)
+        $@Html.DisplayFor(modelItem => item.Price)
     </td>
     <td width="150">
         @for (int i = 1; i <= item.Rating; i++)
@@ -81,8 +75,8 @@
     </td>
 
     <td>
-        @Html.ActionLink("Edit", "Edit", new { Controller = "Product", id = item.Id })
-        <a href="~/Product/Delete?id=@item.Id" class="btn btn-info">Delete</a>
+        <a href="~/Product/Edit?id=@item.Id" class="btn btn-info">Edit</a>
+        <a href="~/Product/Delete?id=@item.Id" class="btn btn-danger">Delete</a>
     </td>
 </tr>
         }

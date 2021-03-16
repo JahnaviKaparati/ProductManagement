@@ -58,12 +58,15 @@ namespace DataLayer.Services
 
         public void Update(Product product)
         {
-            var existingProduct = _db.Products.Where(p => p.Id == product.Id).FirstOrDefault();
+            
+            var existingProduct = _db.Products.FirstOrDefault(p => p.Id == product.Id);
             existingProduct.Name = product.Name;
             existingProduct.Price = product.Price;
             existingProduct.Code = product.Code;
+            existingProduct.Available = product.Available;
             existingProduct.Description = product.Description;
             _db.SaveChanges();
+            
         }
     }
 }

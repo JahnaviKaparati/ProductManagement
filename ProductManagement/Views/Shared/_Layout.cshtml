@@ -53,8 +53,14 @@
                         @if (User.IsInRole(SD.AdminEndUser))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Product" asp-action="Index" style="color:white">All Products</a>
+                                <a class="nav-link" asp-area="" asp-controller="Product" asp-action="Index" style="color:white">Product list</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Product" asp-action="Create" style="color:white">Add Product</a>
+
+                               
+                            </li>
+
                             @*<li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">Product</a>
                             </li>

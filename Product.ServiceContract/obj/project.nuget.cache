@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "HktcX4uNTFaZsjbRxf1K//MiiGPIfov51o1ANsYD9G8N7R3tsxAVWGCAShCdblyty0kOQeOwV/RgJ8LCzSXKlQ==",
+  "success": false,
+  "projectFilePath": "F:\\DotNetBatchJan2021\\WebApps\\ProductManagement\\Product.ServiceContract\\Customer.ServiceContract.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project DomainModels is not compatible with netstandard2.0 (.NETStandard,Version=v2.0). Project DomainModels supports: netcoreapp3.1 (.NETCoreApp,Version=v3.1)",
+      "libraryId": "DomainModels",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    }
+  ]
+}

@@ -5,7 +5,6 @@
 <form asp-action="Edit" method="post" enctype="multipart/form-data">
     <div class="p-4 row">
         <div asp-validation-summary="ModelOnly" class="text-danger">
-
         </div>
         <div class="col-8">
             <div class="form-group row">
@@ -14,18 +13,20 @@
                 </div>
                 <div class="col-8">
                     <input type="hidden" asp-for="Id" />
-                    <input asp-for="Name" class="form-control" />
+                    <input asp-for="Name" class="form-control" required />
+                    <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-                <span asp-validation-for="Name" class="text-danger"></span>
+                
             </div>
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="Code"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Code" class="form-control" />
+                    <input asp-for="Code" class="form-control" required />
+                    <span asp-validation-for="Code" class="text-danger"></span>
                 </div>
-                <span asp-validation-for="Code" class="text-danger"></span>
+                
             </div>
 
             <div class="form-group row">
@@ -33,33 +34,39 @@
                     <label asp-for="Price"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Price" class="form-control" />
+                    <input asp-for="Price" class="form-control" required />
+                    <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
-                <span asp-validation-for="Price" class="text-danger"></span>
+                
             </div>
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="Available"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Available" class="form-control" placeholder="@Model.Available" min="@DateTime.Today.ToString("yyyy-MM-dd")" type="date" />
+                    <input asp-for="Available" class="form-control" placeholder="@Model.Available" min="@DateTime.Today.ToString("yyyy-MM-dd")" type="date" required />
+                    <span asp-validation-for="Available" class="text-danger"></span>
                 </div>
-                <span asp-validation-for="Available" class="text-danger"></span>
+               
             </div>
             <div class="form-group row">
                 <div class="col-4">
                     <label asp-for="Description"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Description" class="form-control" />
+                    <input asp-for="Description" class="form-control" required />
+                    <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
-                <span asp-validation-for="Description" class="text-danger"></span>
+                
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Save" />
                 <a asp-action="Index" class="btn btn-success">Back to List</a>
             </div>
         </div>
-        
+
     </div>
 </form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

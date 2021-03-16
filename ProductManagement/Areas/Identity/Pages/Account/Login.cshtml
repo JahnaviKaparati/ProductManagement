@@ -7,7 +7,7 @@
 
 <style>
 
-body { margin: 0; padding: 0; font-family: sans-serif; /* background: url("~/wwwroot/Images/bg.jpg") no-repeat;*/ background-image: url('https://lh3.googleusercontent.com/proxy/yybPY8aWlcHhME6v4jgumvq08ao11XxhYRZkeJav24dD5CVZFPhXewlEJHK58gap2JfgETEVfJ6WFC5yjSFVnKKrUkTvi8BZzP-czrWAGDfp6Bo1PpeSHoSqErDVvR14'); background-repeat: no-repeat; background-size: cover; }
+body { margin: 0; padding: 0; font-family: sans-serif; /* background: url("~/wwwroot/Images/bg.jpg") no-repeat;*/ background-image: url('https://uniquephoto3.azureedge.net/resources/uniquephoto/images/products/processed/FLL016.zoom.a.jpg'); background-repeat: no-repeat; background-size: cover; }
 
     .login-box {
         width: 280px;
@@ -67,7 +67,7 @@ body { margin: 0; padding: 0; font-family: sans-serif; /* background: url("~/www
 <body>
     <section>
         <form id="account" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
+            @*<div asp-validation-summary="All" class="text-danger"></div>*@
             <div class="login-box">
                 <h1 style="color:black">Login</h1>
                 <div class="textbox">
@@ -85,10 +85,10 @@ body { margin: 0; padding: 0; font-family: sans-serif; /* background: url("~/www
                 <input type="submit" class="btn btn-primary align-content-center" value="Sign in">
                 <div class="form-group">
                     <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword" style="color:white">Forgot your password?</a>
+                        <a id="forgot-password" asp-page="./ForgotPassword" style="color:black">Forgot your password?</a>
                     </p>
                     <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="color:white">Register as a new user</a>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" style="color:black">Register as a new user</a>
                     </p>
                 </div>
 
@@ -108,7 +108,7 @@ body { margin: 0; padding: 0; font-family: sans-serif; /* background: url("~/www
                     }
                     else
                     {
-                        <form class="text-right" id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <form class="text-right form-horizontal" id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                            
                             <div>
                                 <p>
